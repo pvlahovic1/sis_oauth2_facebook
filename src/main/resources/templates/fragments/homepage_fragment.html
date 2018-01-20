@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="data_table">
+    <table id="nesreceTable" class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Value</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="value : ${values}">
+            <td th:text="${value.title}">Title</td>
+            <td th:text="${value.value}">Value</td>
+            <td th:text="${#temporals.format(value.date, 'dd.MM.yyyy HH:mm')}">Date</td>
+            <td><button class="btn btn-secondary" th:onclick="'deleteData(' + ${value.id} + ');'" th:text="Delete">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="new_data">
+    <form id="newDataForm">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" />
+        <label for="value">Value:</label>
+        <textarea class="form-control" rows="5" id="value" name="value"></textarea>
+        <button class="btn btn-primary" th:onclick="'addNew();'" th:text="Add">Add</button>
+    </form>
+</div>
+
+</html>
